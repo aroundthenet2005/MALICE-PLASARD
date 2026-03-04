@@ -206,9 +206,7 @@ def main():
         print("Weekend -> skip.")
         return
 
-    if not (now_local.hour == 6 and 0 <= now_local.minute <= 20):
-        print(f"Local time {now_local.isoformat()} -> not in 06:00-06:20 window, skip.")
-        return
+    print("TEST MODE -> time gate bypassed")
 
     date_text, items = fetch_menu()
     print("DATE:", date_text)
