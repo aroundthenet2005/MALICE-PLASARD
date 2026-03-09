@@ -2,9 +2,11 @@ name: Rimljan malice poll
 
 on:
   schedule:
-    # GitHub cron runs in UTC; we run both times to cover CET/CEST and gate by Europe/Ljubljana time in code.
+    # GitHub cron runs in UTC.
+    # 03:10 UTC = 05:10 Europe/Ljubljana during CEST
+    # 04:10 UTC = 05:10 Europe/Ljubljana during CET
+    - cron: "10 3 * * 1-5"
     - cron: "10 4 * * 1-5"
-    - cron: "10 5 * * 1-5"
   workflow_dispatch:
 
 jobs:
