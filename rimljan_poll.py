@@ -80,7 +80,7 @@ def clean_text(s: str) -> str:
 def truncate_to_two_words_if_needed(item: str) -> str:
     item = clean_text(item)
 
-    # If too long, keep only first 2 words (your rule)
+    # If too long, keep only first 2 words
     if len(item) > MAX_ANSWER_LEN:
         words = item.split()
         item = " ".join(words[:2]) if len(words) >= 2 else item
@@ -199,15 +199,15 @@ def main():
     if not BOT_TOKEN or not CHANNEL_ID:
         die("Manjka DISCORD_BOT_TOKEN ali DISCORD_CHANNEL_ID (GitHub Secrets).")
 
-    # Run only Mon-Fri, at ~06:10 Europe/Ljubljana.
-    # GitHub schedule is UTC, so we run twice and gate by local time window.
+    # Run only Mon-Fri, between 05:00 and 07:00 Europe/Ljubljana.
+    # GitHub schedule is UTC, so we run at 03:10 and 04:10 UTC and gate by local time window.
     now_local = datetime.now(ZoneInfo("Europe/Ljubljana"))
     if now_local.weekday() >= 5:
         print("Weekend -> skip.")
         return
 
-    if not (now_local.hour == 6 and 0 <= now_local.minute <= 20):
-        print(f"Local time {now_local.isoformat()} -> not in 06:00-06:20 window, skip.")
+    if not ((now_local.hour == 5) or (now_local.hour == 6) or (now_local.hour == 7 and now_local.minute == 0)):
+        print(f"Local time {now_local.isoformat()} -> not in 05:00-07:00 window, skip.")
         return
 
     date_text, items = fetch_menu()
