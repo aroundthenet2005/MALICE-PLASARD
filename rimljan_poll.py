@@ -181,7 +181,7 @@ def fetch_menu():
     return date_text, items
 
 
-def post_poll(date_text: str, items: list[str], duration_hours: int = 3):
+def post_poll(date_text: str, items: list[str], duration_hours: int = 4):
     payload = {
         "content": f"🍽️ Rimljan malice — {date_text}",
         "poll": {
@@ -218,7 +218,7 @@ def main():
         print("Already posted for this date -> skip.")
         return
 
-    post_poll(date_text, items, duration_hours=3)
+    post_poll(date_text, items, duration_hours=4)
     print("Posted poll.")
 
 
