@@ -206,9 +206,7 @@ def main():
         print("Weekend -> skip.")
         return
 
-    if not ((now_local.hour == 4) or (now_local.hour == 5) or (now_local.hour == 6) or (now_local.hour == 7 and now_local.minute == 0)):
-        print(f"Local time {now_local.isoformat()} -> not in 04:00-08:00 window, skip.")
-        return
+        print(f"[DEBUG] Current Ljubljana time: {now_local.isoformat()}")
 
     date_text, items = fetch_menu()
     print("DATE:", date_text)
